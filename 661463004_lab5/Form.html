@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="./Form.css">
+
+</head>
+
+<body>
+
+    <div class="banner">
+        <h2>ลงทะเบียนผู้ใช้งาน</h2>
+        <img src="./img/1.jpg" alt="Register">
+    </div>
+
+    <div class="container">
+        <form onsubmit="return validatePassword()">
+            <label for="email">รหัสผู้ใช้</label>
+            <input type="email" id="email" name="email" placeholder="mail@address.com" required>
+
+            <label for="password">รหัสผ่าน</label>
+            <input type="password" id="password" name="password" placeholder="รหัสผ่าน" required>
+
+            <label for="confirm_password">ยืนยันรหัสผ่าน</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="ยืนยันรหัสผ่าน" required>
+            <span id="error_message" class="error" style="color: red; display: none;">รหัสผ่านไม่ตรงกัน</span>
+
+            <label for="fullname">ชื่อ-นามสกุล</label>
+            <input type="text" id="fullname" name="fullname" placeholder="ชื่อ-นามสกุล" required>
+
+            <label for="dob">วันเกิด</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="age">อายุ</label>
+            <input type="number" id="age" name="age" placeholder="อายุ" required>
+
+            <label>เพศ</label>
+            <input type="radio" id="male" name="gender" value="male" required> ชาย
+            <input type="radio" id="female" name="gender" value="female" required> หญิง
+
+            <label>สถานภาพ</label>
+            <input type="radio" id="single" name="status" value="single" required> โสด
+            <input type="radio" id="married" name="status" value="married" required> สมรส
+            <input type="radio" id="divorced" name="status" value="divorced" required> หย่าร้าง
+
+            <label for="height">ส่วนสูง</label>
+            <input type="range" id="height" name="height" min="100" max="200" value="155" class="slider"
+                oninput="this.nextElementSibling.value = this.value + ' cm'">
+            <output>155 cm</output>
+
+            <label for="purpose">ประเภทผู้ใช้</label>
+            <select id="purpose" name="purpose" required>
+                <option value="">เลือกประเภทผู้ใช้</option>
+                <option value="1">นักศึกษา</option>
+                <option value="2">อาจารย์</option>
+                <option value="3">เจ้าหน้าที่</option>
+                <option value="4">ผู้ใช้งาน</option>
+            </select>
+
+            <label>
+                <input type="checkbox" name="agreement" required> ยอมรับเงื่อนไขการใช้งาน
+            </label>
+
+            <div style="display: flex; justify-content: space-between;">
+                <button type="submit" class="submit-button">ยืนยันสมัครสมาชิก</button>
+                <button type="button" class="clear-button" onclick="clearForm()">เคลียร์ทั้งหมด</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            var errorMessage = document.getElementById("error_message");
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = "inline";
+                return false;
+            } else {
+                errorMessage.style.display = "none";
+                return true;
+            }
+        }
+
+        function clearForm() {
+            document.querySelector("form").reset();
+            document.getElementById("error_message").style.display = "none";
+        }
+    </script>
+    <!--
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // ป้องกันไม่ให้ฟอร์มส่งข้อมูลแบบปกติ
+
+            // ดึงข้อมูลจากฟอร์ม
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // ตรวจสอบเงื่อนไข
+            if (username === "yourUsername" && password === "yourPassword") {
+                window.location.href = "http://127.0.0.1:5500/lab5/index.html"; // เปลี่ยนไปยัง URL ที่ต้องการ
+            } else {
+                alert("Username หรือ Password ไม่ถูกต้อง");
+            }
+        });
+        if (username === "admin" && password === "1234") {
+            window.location.href = "http://127.0.0.1:5500/lab5/index.html";
+        } else {
+            alert("Username หรือ Password ไม่ถูกต้อง");
+        }
+
+    </script>
+-->
+</body>
+
+</html>
